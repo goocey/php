@@ -1,0 +1,43 @@
+<!--{comment}--> this is a comment <!--{/comment}-->
+{val one}<br>
+{val two}<br>
+<!--{each three}-->
+	{val three}
+<!--{/each}-->
+
+<!--{each address}-->
+----------------------------------
+	ZIP:{val address/zip}<br>
+	PREF:{val address/pref}<br>
+	<!--{def address/zip}-->
+		"address/zip" is defined.<br>
+	<!--{/def}-->
+<!--{/each}-->
+
+<!--{def one}-->
+  "one" is defined.<br>
+<!--{/def}-->
+
+<!--{def five}-->
+	"five" is defined.  !?<br>
+<!--{/def}-->
+
+<!--{def address}-->
+	"address" is defined.<br>
+<!--{/def}-->
+
+	<!--{def address/zip}-->
+		OUT OF 'EACH'!!
+		"address/zip" is defined.<br>
+	<!--{/def}-->
+
+	<!--{vdef address/zip}-->
+		OUT OF 'EACH'!!
+		"address/zip" is defined.<br>
+	<!--{/vdef}-->
+
+VAL:<br>
+{val nl2brtest}<br><br>
+
+RVAL:<br>
+{rval nl2brtest}

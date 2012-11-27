@@ -1,0 +1,8 @@
+	<div id="body">
+        このページはこのアプリケーションで作成されている一覧を表示します。<br />
+        <?php if (isset($contents) == 1): ?>
+            <?php foreach ($contents as $contents_key => $contents_value): ?>
+                <a href="<?= $contents_key ?>"><?=$contents_value?></a><br />
+            <?php endforeach; ?>
+        <?php endif; ?>
+	</div>

@@ -13,6 +13,7 @@ var_dump($mdb->connect());
 $mdb->setFunction();
 $mdb->setParams(array('param' => 1));
 $mdb->buildSQL();
-//var_dump($mdb->execSQL());
+var_dump($mdb->execSQL());
+var_dump($mdb->disconnect());
 
 ?>

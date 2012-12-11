@@ -41,11 +41,11 @@ class Mdb2Wrapper {
      */
     public function connect() {
         if(isset($this->dsn)) {
-            $this->dbhandler =& MDB2::connect($dsn);
-            return get_class($this->dbhandler);
-            if (PEAR::isError($mdb2)) {
-                die($mdb2->getMessage());
+            $this->dbhandler =& MDB2::connect($this->dsn);
+            if (PEAR::isError($this->dbhandler)) {
+                die($this->dbhandler->getMessage());
             }
+            return true;
         }
         return false;
     }
@@ -77,7 +77,8 @@ class Mdb2Wrapper {
      *
      */
     public function buildSQL() {
-        $sql = "SELECT * FROM " . $this->funtion . " ( " ;
+        $sql = "SELECT * FROM " . $this->function . " ( 1 )" ;
+        /*
         foreach ($this->params as $key => $value) {
             if (count($this->params) == $key) {
                 $sql =+ $value;
@@ -85,15 +86,22 @@ class Mdb2Wrapper {
                 $sql =+ $value . ',';
             }
         }
+         */
         $this->sql = $sql;
     }
 
     /**
      * SQL実行結果の取得
      *
+     * return SQL実行結果(配列)
      */
     public function execSQL() {
         $res =& $this->dbhandler->query($this->sql);
+        if (PEAR::isError($res)) {
+            die($res->getMessage());
+        }
+
+        $this->dbhandler = $res;
         // $mdb2->setFetchMode(MDB2_FETCHMODE_ORDERED); // デフォルト
         return $res->fetchAll();
     }
@@ -104,7 +112,7 @@ class Mdb2Wrapper {
      * return boolean 正常に切断 成功 / 失敗
      */
     public function disconnect() {
-        $mdb2->disconnect();
+        $this->dbhandler->disconnect();
     }
 }
 ?>

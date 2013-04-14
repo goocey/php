@@ -1,2 +1,3 @@
 # php auth file ignore
 basic_auth/mydns.jp.setting.php
+work/workcalc/*

@@ -1,3 +1,7 @@
 # php auth file ignore
+#basis_auth
 basic_auth/mydns.jp.setting.php
+basic_auth/vendor
+#global
+*/composer.lock
 work/workcalc/*

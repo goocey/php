@@ -1,0 +1,10 @@
+[Unit]
+Description=Exec 10min mydns auth
+
+[Timer]
+OnBootSec=1min         # ブートしてから1分以上経過していたら1度実行する
+OnUnitActiveSec=10sec  # 且つ、最後に実行してから10秒経っていたら実行する
+Unit=mydns.serivce     # startするサービス: hoge.timer/hoge.servceのように同じ名前なら省略可
+
+[Install]
+WantedBy=timers.target

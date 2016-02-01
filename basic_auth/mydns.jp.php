@@ -7,13 +7,13 @@ require_once 'mydns.jp.setting.php';
 $req = new HTTP_Request2("http://www.mydns.jp/login.html");
 $req->setAuth($user,$passwd, HTTP_Request2::AUTH_BASIC);
 $response = $req->send();
-echo $response->getBody();
-
-//$conf = array('mode' => 06444, 'timeFormat' => '%X %x');
-//if(PEAR::isError($response)) {
-//  echo "error";
-//  $err_log = &Log::singleton('file', 'error_log', $response->getMessage());
-//} else {
-//  echo "success";
-//  $acess_log = &Log::singleton('file', 'error_log', $req->getResponseBody());
-//}
+if (200 != $response->getStatus()) {
+  echo "update failed\n";
+  echo $response->getBody();
+} else {
+  echo "update succesed\n";
+  $message = $response->getBody();
+  preg_match('/.*REMOTE ADDRESS:.*/', $message, $remote_add_message);
+  preg_match('/\d+\.\d+\.\d+\.\d+/', $remote_add_message[0], $ipadd);
+  echo "REMOTE ADDR:" . $ipadd[0] . "\n";
+}

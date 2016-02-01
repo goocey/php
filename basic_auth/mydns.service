@@ -1,0 +1,12 @@
+[Unit]
+Description=mydns service(docker)
+
+[Service]
+ExecStart=/mnt/3tv1/src/lunasrc/git/github/php/basic_auth/run.sh
+ExecReload=/mnt/3tv1/src/lunasrc/git/github/php/basic_auth/run.sh
+KillMode=process
+User=luna
+Group=wheel
+
+[Install]
+WantedBy=multi-user.target
